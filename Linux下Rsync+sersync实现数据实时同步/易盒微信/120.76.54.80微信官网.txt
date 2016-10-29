@@ -1,0 +1,9 @@
+第一部分：分别在两台目标服务器192.168.21.127，192.168.21.128上操作
+一、分别在两台在目标服务器安装Rsync服务端
+1、关闭SELINUX
+vi /etc/selinux/config #编辑防火墙配置文件
+#SELINUX=enforcing #注释掉
+#SELINUXTYPE=targeted #注释掉
+SELINUX=disabled #增加
+:wq! #保存，退出
+setenforce 0 #立即生效

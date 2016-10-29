@@ -1,0 +1,8 @@
+2、修改inotify默认参数（inotify默认内核参数值太小）
+vi /etc/sysctl.conf #添加以下代码
+fs.inotify.max_queued_events=99999999
+fs.inotify.max_user_watches=99999999
+fs.inotify.max_user_instances=65535
+:wq! #保存退出
+
+

@@ -1,0 +1,97 @@
+yum install gcc+ gcc-c++
+yum install php53 php53-devel
+yum install cyrus-sasl-plain cyrus-sasl  cyrus-sasl-devel  cyrus-sasl-lib
+cd ..
+wget http://launchpad.net/libmemcached/1.0/1.0.2/+download/libmemcached-1.0.2.tar.gz
+tar -zxvf libmemcached-1.0.2.tar.gz
+cd libmemcached-1.0.2
+./configure --prefix=/usr/local/libmemcached
+make
+make install
+cd ..
+yum install zlib-devel
+cd memcached-2.2.0
+./configure --with-libmemcached-dir=/usr/local/libmemcached --enable-memcached-sasl
+make
+make install
+ll /alidata/server/php/lib/php/extensions/no-debug-non-zts-20090626/
+
+===================
+
+yum  install gcc+ gcc-c++
+yum install php53 php53-devel
+yum install cyrus-sasl-plain cyrus-sasl  cyrus-sasl-devel  cyrus-sasl-lib
+yum install zlib-devel
+
+  wget http://launchpad.net/libmemcached/1.0/1.0.2/+download/libmemcached-1.0.2.tar.gz
+  tar -zxvf libmemcached-1.0.2.tar.gz
+  cd libmemcached-1.0.2
+   ./configure --prefix=/usr/local/libmemcached --enable-sasl
+  make
+  make install
+  cd ..
+
+ 
+  wget http://pecl.php.net/get/memcached-2.2.0.tgz
+  tar xzvf memcached-2.2.0.tgz
+  cd memcached-2.2.0
+  phpize 
+  ./configure --with-libmemcached-dir=/usr/local/libmemcached --enable-memcached-sasl --with-php-config=/alidata/server/php/bin/php-config
+  make
+  make install
+
+
+  ll /alidata/server/php/lib/php/extensions/no-debug-non-zts-20090626/
+  sudo vim /alidata/server/php/etc/php.ini
+
+extension=memcached.so
+memcached.use_sasl=1
+
+===================
+http://blog.sina.com.cn/s/blog_5f54f0be0101h8ox.html
+
+1.安装 sasl 环境
+yum install cyrus-sasl-lib.x86_64
+yum install cyrus-sasl-devel.x86_64
+yum install devel.x86_64
+
+2.安装 libmemcached
+下载地址(必须是该版本)
+https://launchpad.net/libmemcached/1.0/1.0.16/+download/libmemcached-1.0.16.tar.gz
+
+tar zxvf libmemcached-1.0.16.tar.gz
+cd libmemcached-1.0.16
+./configure --prefix=/usr/local/libmemcached --enable-sasl
+make; make install; make clean
+cd ..
+
+3.安装 PHP 的 memcached 扩展
+wget http://pecl.php.net/get/memcached-2.1.0.tgz
+tar zxvf memcached-2.1.0.tgz
+cd memcached-2.1.0
+phpize
+./configure --with-php-config=/usr/local/php/bin/php-config --with-libmemcached-dir=/usr/local/libmemcached/ --enable-memcached-sasl
+注意后面的 enable-memcached-sasl 参数
+make; make install; make clean
+最后修改php.ini文件，增加:
+extension_dir="/usr/local/php/lib/php/extensions/no-debug-non-zts-20090626/"
+extension=“memcached.so"
+wget https://launchpad.net/libmemcached/1.0/1.0.18/+download/libmemcached-1.0.18.tar.gz
+tar xzvf libmemcached-1.0.18.tar.gz
+cd libmemcached-1.0.18
+./configure --prefix=/usr/local/libmemcached  --enable-sasl
+make
+make install
+wget http://pecl.php.net/get/memcached-2.1.0.tgz
+tar zxvf memcached-2.1.0.tgz
+cd memcached-2.1.0
+phpize
+./configure --with-libmemcached-dir=/usr/local/libmemcached --enable-memcached-sasl
+make
+make install
+ ll /alidata/server/php/lib/php/extensions/no-debug-non-zts-20090626/
+sudo vim /alidata/server/php/etc/php.ini
+ php -m
+php -i | grep memcache
+
+===

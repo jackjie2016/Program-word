@@ -1,0 +1,38 @@
+
+log file = /var/log/rsyncd.log #日志文件位置，启动rsync后自动产生这个文件，无需提前创建
+
+pidfile = /var/run/rsyncd.pid  #pid文件的存放位置
+
+lock file = /var/run/rsync.lock  #支持max connections参数的锁文件
+
+secrets file = /etc/rsync.pass  #用户认证配置文件，里面保存用户名称和密码，后面会创建这个文件
+
+motd file = /etc/rsyncd.Motd  #rsync启动时欢迎信息页面文件位置（文件内容自定义）
+
+[home_7in6_com] #自定义名称
+
+path = /home/wwwroot/default/7in6_com #rsync服务端数据目录路径
+
+comment = home_7in6_com #模块名称与[home_www.osyunwei.com]自定义名称相同
+
+uid = root #设置rsync运行权限为root
+
+gid = root #设置rsync运行权限为root
+
+port=873  #默认端口
+
+use chroot = no #默认为true，修改为no，增加对目录文件软连接的备份
+
+read only = no  #设置rsync服务端文件为读写权限
+
+list = no #不显示rsync服务端资源列表
+
+max connections = 200 #最大连接数
+
+timeout = 600  #设置超时时间
+
+auth users = 7in6_com_user #执行数据同步的用户名，可以设置多个，用英文状态下逗号隔开
+
+hosts allow = 10.116.148.91  #允许进行数据同步的客户端IP地址，可以设置多个，用英文状态下逗号隔开
+
+hosts deny = 192.168.21.254 #禁止数据同步的客户端IP地址，可以设置多个，用英文状态下逗号隔开

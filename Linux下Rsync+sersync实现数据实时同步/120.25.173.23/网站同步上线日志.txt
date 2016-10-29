@@ -1,0 +1,7 @@
+root.7in6.com/admin 更改为service.7in6.com
+
+修改data/config/config.ini.php 文件
+
+
+修改confxml.xml
+增加对112.74.102.43 服务器的同步
